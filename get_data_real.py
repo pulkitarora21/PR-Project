@@ -1,11 +1,12 @@
 import json, pycurl, StringIO
-base = 9158272
+base = 9157272
 arrayOfStories = []
 arrayOfComments = []
 arrayOfPolls = []
 arrayOfJobs = []
 arrayOfPollopts = []
-for i in range(1,50):
+noOfPostsToBeScanned = 20000
+for i in range(1,noOfPostsToBeScanned):
 	currentID = base - i
 	url = "https://hacker-news.firebaseio.com/v0/item/"+str(currentID)+".json"
 	c = pycurl.Curl()
