@@ -30,4 +30,4 @@ for i in data:
 	json_data=htmlsrc
 	data1 = json.loads(json_data)
 	print data1
-	
+	print data1["type"]=="story"
