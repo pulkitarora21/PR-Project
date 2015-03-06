@@ -37,6 +37,8 @@ for i in range(1,noOfPostsToBeScanned):
 			arrayOfPollopts.append(data1)
 	print len(arrayOfStories)
 	print currentID
+	with open('stories.txt', 'w') as outfile:
+    	json.dump(arrayOfStories, outfile)
 #9158271
 
 with open('stories.txt', 'w') as outfile:
