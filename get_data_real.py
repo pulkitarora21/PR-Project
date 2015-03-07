@@ -1,5 +1,5 @@
 import json, pycurl, StringIO
-base = 9157272
+base = 8757260
 arrayOfStories = []
 arrayOfComments = []
 arrayOfPolls = []
@@ -22,7 +22,14 @@ for i in range(1,noOfPostsToBeScanned):
 
 	json_data=htmlsrc
 	data1 = json.loads(json_data)
+	print currentID
 	print data1
+	print data1==None
+	if data1!=None:
+		print "here"
+	else:
+		print "yo :D"
+		continue
 	print data1["type"]=="story"
 	if(data1["type"]):
 		if(data1["type"])=="story":
