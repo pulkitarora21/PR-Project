@@ -31,6 +31,10 @@ for i in range(1,noOfPostsToBeScanned):
 		print "yo :D"
 		continue
 	print data1["type"]=="story"
+	try:
+		print data1["type"]
+	except KeyError:
+		continue
 	if(data1["type"]):
 		if(data1["type"])=="story":
 			arrayOfStories.append(data1)
