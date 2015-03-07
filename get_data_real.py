@@ -46,6 +46,17 @@ for i in range(1,noOfPostsToBeScanned):
 	print currentID
 	with open('stories.txt', 'w') as outfile:
 		json.dump(arrayOfStories, outfile)
+	with open('comments.txt', 'w') as outfile:
+		json.dump(arrayOfComments, outfile)
+
+	with open('polls.txt', 'w') as outfile:
+		json.dump(arrayOfPolls, outfile)
+
+	with open('jobs.txt', 'w') as outfile:
+		json.dump(arrayOfPolls, outfile)
+
+	with open('pollopts.txt', 'w') as outfile:
+		json.dump(arrayOfPollopts, outfile)
 #9158271
 
 with open('stories.txt', 'w') as outfile:
