@@ -41,6 +41,7 @@ for i in range(1,noOfPostsToBeScanned):
 	if(data1["type"]):
 		if(data1["type"])=="story":
 			with open('stories2.txt') as outfile:
+				print "changing arrayOfStories"
 				arrayOfStories = json.load(outfile)
 			arrayOfStories.append(data1)
 		if(data1["type"])=="comment":
