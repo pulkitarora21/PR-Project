@@ -44,52 +44,42 @@ for i in range(1,noOfPostsToBeScanned):
 				print "changing arrayOfStories"
 				arrayOfStories = json.load(outfile)
 			arrayOfStories.append(data1)
+			with open('stories2.txt', 'w') as outfile:
+				json.dump(arrayOfStories, outfile)
 		if(data1["type"])=="comment":
 			with open('comments2.txt') as outfile:
 				arrayOfComments = json.load(outfile)
 			arrayOfComments.append(data1)
+			with open('comments2.txt', 'w') as outfile:
+				json.dump(arrayOfComments, outfile)
 		if(data1["type"])=="poll":
 			with open('polls2.txt') as outfile:
 				arrayOfPolls = json.load(outfile)
 			arrayOfPolls.append(data1)
+			with open('polls2.txt', 'w') as outfile:
+				json.dump(arrayOfPolls, outfile)
 		if(data1["type"])=="job":
 			with open('jobs2.txt') as outfile:
 				arrayOfJobs = json.load(outfile)
 			arrayOfJobs.append(data1)
+			with open('jobs2.txt', 'w') as outfile:
+				json.dump(arrayOfPolls, outfile)
+
 		if(data1["type"])=="pollopt":
 			with open('pollopts2.txt') as outfile:
 				arrayOfPollopts = json.load(outfile)
 			arrayOfPollopts.append(data1)
+			with open('pollopts2.txt', 'w') as outfile:
+				json.dump(arrayOfPollopts, outfile)
 	print len(arrayOfStories)
 	print currentID
 	with open('currentID.txt', 'w') as outfile:
 		json.dump(currentID, outfile)
-	with open('stories2.txt', 'w') as outfile:
-		json.dump(arrayOfStories, outfile)
-	with open('comments2.txt', 'w') as outfile:
-		json.dump(arrayOfComments, outfile)
+	
+	
 
-	with open('polls2.txt', 'w') as outfile:
-		json.dump(arrayOfPolls, outfile)
+	
 
-	with open('jobs2.txt', 'w') as outfile:
-		json.dump(arrayOfPolls, outfile)
-
-	with open('pollopts2.txt', 'w') as outfile:
-		json.dump(arrayOfPollopts, outfile)
+	
+	
 #9158271
-
-with open('stories2.txt', 'w') as outfile:
-    json.dump(arrayOfStories, outfile)
-
-with open('comments2.txt', 'w') as outfile:
-    json.dump(arrayOfComments, outfile)
-
-with open('polls2.txt', 'w') as outfile:
-    json.dump(arrayOfPolls, outfile)
-
-with open('jobs2.txt', 'w') as outfile:
-    json.dump(arrayOfPolls, outfile)
-
-with open('pollopts2.txt', 'w') as outfile:
-    json.dump(arrayOfPollopts, outfile)
