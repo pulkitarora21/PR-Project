@@ -5,7 +5,12 @@ json_data=open('stories1.txt')
 data = json.load(json_data)
 
 for i in range(0,len(data)):
-	username = data[i]["by"]
+	try:
+		username = data[i]["by"]
+	except KeyError:
+		data[i]["user_karma"] = 0
+		data[i]["user_avg_karma"] = 0
+		continue
 	url = "https://hacker-news.firebaseio.com/v0/user/"+username+".json"
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, url)
@@ -20,8 +25,13 @@ for i in range(0,len(data)):
 
 	json_data=htmlsrc
 	data1 = json.loads(json_data)
-	data[i]["user_karma"] = data1["karma"]
-	data[i]["user_avg_karma"] = (data1["karma"])/(float(len(data1["submitted"])))
+	try:
+		data[i]["user_karma"] = data1["karma"]
+		data[i]["user_avg_karma"] = (data1["karma"])/(float(len(data1["submitted"])))
+	except KeyError:
+		data[i]["user_karma"] = 0
+		data[i]["user_avg_karma"] = 0
+
 	print data[i]
 
 
