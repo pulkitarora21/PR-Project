@@ -3,10 +3,10 @@ from urlparse import urlparse
 
 json_data=open('stories1.txt')
 data = json.load(json_data)
-
+username = ""
 for i in range(0,len(data)):
 	try:
-		username = data[i]["by"]
+		username = str(data[i]["by"])
 	except KeyError:
 		data[i]["user_karma"] = 0
 		data[i]["user_avg_karma"] = 0
