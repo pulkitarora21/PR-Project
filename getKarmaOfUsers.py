@@ -1,7 +1,7 @@
 import json, pycurl, StringIO
 from urlparse import urlparse
 
-json_data=open('stories1.txt')
+json_data=open('stories2.txt')
 data = json.load(json_data)
 username = ""
 for i in range(0,len(data)):
@@ -35,6 +35,6 @@ for i in range(0,len(data)):
 	print data[i]
 
 
-with open('stories1_karma.txt', 'w') as outfile:
+with open('stories2_karma.txt', 'w') as outfile:
 	json.dump(data, outfile, indent=4)
 
