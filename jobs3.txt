@@ -1,0 +1,1 @@
+[{"kids": [8713076], "score": 5, "title": "Poll: Is the quality of Google's services improving or worsening?", "text": "In general, do you think the quality of Google&#x27;s services -- Drive, Android, Search, etc. -- is improving, worsening or par for the course?", "id": 8712969, "parts": [8712970, 8712971, 8712972], "time": 1417975659, "type": "poll", "by": "jtemplin"}]
