@@ -32,6 +32,8 @@ for i in range(1,noOfPostsToBeScanned):
 		print "here"
 	else:
 		print "yo :D"
+		with open("currentID.txt",'w') as outfile:
+			json.dump(currentID,outfile)
 		continue
 	print data1["type"]=="story"
 	try:
@@ -40,36 +42,36 @@ for i in range(1,noOfPostsToBeScanned):
 		continue
 	if(data1["type"]):
 		if(data1["type"])=="story":
-			with open('stories2.txt') as outfile:
+			with open('stories3.txt') as outfile:
 				print "changing arrayOfStories"
 				arrayOfStories = json.load(outfile)
 			arrayOfStories.append(data1)
-			with open('stories2.txt', 'w') as outfile:
+			with open('stories3.txt', 'w') as outfile:
 				json.dump(arrayOfStories, outfile)
 		if(data1["type"])=="comment":
-			with open('comments2.txt') as outfile:
+			with open('comments3.txt') as outfile:
 				arrayOfComments = json.load(outfile)
 			arrayOfComments.append(data1)
-			with open('comments2.txt', 'w') as outfile:
+			with open('comments3.txt', 'w') as outfile:
 				json.dump(arrayOfComments, outfile)
 		if(data1["type"])=="poll":
-			with open('polls2.txt') as outfile:
+			with open('polls3.txt') as outfile:
 				arrayOfPolls = json.load(outfile)
 			arrayOfPolls.append(data1)
-			with open('polls2.txt', 'w') as outfile:
+			with open('polls3.txt', 'w') as outfile:
 				json.dump(arrayOfPolls, outfile)
 		if(data1["type"])=="job":
-			with open('jobs2.txt') as outfile:
+			with open('jobs3.txt') as outfile:
 				arrayOfJobs = json.load(outfile)
 			arrayOfJobs.append(data1)
-			with open('jobs2.txt', 'w') as outfile:
+			with open('jobs3.txt', 'w') as outfile:
 				json.dump(arrayOfPolls, outfile)
 
 		if(data1["type"])=="pollopt":
-			with open('pollopts2.txt') as outfile:
+			with open('pollopts3.txt') as outfile:
 				arrayOfPollopts = json.load(outfile)
 			arrayOfPollopts.append(data1)
-			with open('pollopts2.txt', 'w') as outfile:
+			with open('pollopts3.txt', 'w') as outfile:
 				json.dump(arrayOfPollopts, outfile)
 	print len(arrayOfStories)
 	print currentID
