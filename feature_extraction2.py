@@ -14,7 +14,7 @@ def histogram(words, freq):
 
 
 
-json_data=open('stories2_karma.txt')
+json_data=open('stories3_karma.txt')
 data = json.load(json_data)
 
 
@@ -57,6 +57,6 @@ for i in range(0,len(data)):
     data[i]["words_freq"] = freq
 
 
-with open('stories2_feature_extraction.txt', 'w') as outfile:
+with open('stories3_feature_extraction.txt', 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
