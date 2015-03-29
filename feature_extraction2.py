@@ -1,8 +1,9 @@
 import json
-import nltk
 from nltk.corpus import stopwords # Import the stop word list
 import re
 from urlparse import urlparse
+from nltk import *
+from nltk.stem.wordnet import *
 
 def histogram(words, freq):
     for w in words:
@@ -11,6 +12,50 @@ def histogram(words, freq):
         else:
             freq[w] = 1
     return freq
+
+
+def convertToLowerAndSplit(text):
+    words = re.sub("[^a-zA-Z]"," ",text)
+    lower_case = words.lower()        # Convert to lower case
+    words = lower_case.split() 
+    return words
+
+
+def removeStopwords(words):
+    words = [w for w in words if not w in stopwords.words("english")]
+    return words
+
+def get_wordnet_pos(treebank_tag):
+
+    if treebank_tag.startswith('J'):
+        return wordnet.ADJ
+    elif treebank_tag.startswith('V'):
+        return wordnet.VERB
+    elif treebank_tag.startswith('N'):
+        return wordnet.NOUN
+    elif treebank_tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return ''
+
+wnl = WordNetLemmatizer()
+def lemmatizeWord(word):
+    wordPos = pos_tag(word_tokenize(word))[0][1]
+    wordWordnet = get_wordnet_pos(wordPos)
+    if wordWordnet!='':
+        word = wnl.lemmatize(word,wordWordnet)
+    else:
+        word = wnl.lemmatize(word)
+    return word
+
+def lemmatizeWords(words):
+    words = [lemmatizeWord(word) for word in words]
+    return words
+
+
+print lemmatizeWord("going")
+
+
 
 
 
@@ -32,13 +77,12 @@ for i in range(0,len(data)):
         text = data[i]["text"]
     except KeyError:
         text = ""
-    freq = {}
-    # print text
-    words = re.sub("[^a-zA-Z]"," ",text )
-    lower_case = words.lower()        # Convert to lower case
-    words = lower_case.split() 
+    
 
-    words = [w for w in words if not w in stopwords.words("english")]
+    # convert text to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
+    words = convertToLowerAndSplit(text) 
+    words = removeStopwords(words)
+    words = lemmatizeWords(words)
     freq = {}
     freq = histogram(words, freq)
     
@@ -47,13 +91,14 @@ for i in range(0,len(data)):
         title = data[i]["title"]
     except KeyError:
         title = ""
-    words = re.sub("[^a-zA-Z]"," ",title)
-    lower_case = words.lower()        # Convert to lower case
-    words = lower_case.split() 
-
-    words = [w for w in words if not w in stopwords.words("english")]
+    
+    # convert title to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
+    words = convertToLowerAndSplit(title)
+    words = removeStopwords(words)
+    words = lemmatizeWords(words)
     freq = histogram(words, freq)
-    # print freq
+    
+
     data[i]["words_freq"] = freq
 
 
