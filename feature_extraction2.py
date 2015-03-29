@@ -71,13 +71,19 @@ def lemmatizeText(text):
     return words
 
 
+st = LancasterStemmer()
+def stemWords(words):
+    words = [st.stem(word) for word in words]
+    return words
+
+
 print lemmatizeWord("going")
 
 
 print lemmatizeText("hey, he is going to school for attending classes")
 
 
-json_data=open('stories1_karma.txt')
+json_data=open('stories3_karma.txt')
 data = json.load(json_data)
 
 
@@ -101,10 +107,10 @@ for i in range(0,len(data)):
     text = convertToLowerRemNonAlphaChars(text)
     # words = convertToLowerAndSplit(text) 
     # words = removeStopwords(words)
-    words = lemmatizeText(text)
-    words = removeStopwords(words)
+    wordsText = lemmatizeText(text)
+    wordsText = removeStopwords(wordsText)
     freq = {}
-    freq = histogram(words, freq)
+    freq = histogram(wordsText, freq)
     
 
     try:
@@ -116,14 +122,22 @@ for i in range(0,len(data)):
     title = convertToLowerRemNonAlphaChars(title)
     # words = convertToLowerAndSplit(title)
     # words = removeStopwords(words)
-    words = lemmatizeText(title)
-    words = removeStopwords(words)
-    freq = histogram(words, freq)
-    
-
+    wordsTitle = lemmatizeText(title)
+    wordsTitle = removeStopwords(wordsTitle)
+    freq = histogram(wordsTitle, freq)
     data[i]["words_freq"] = freq
 
 
-with open('stories1_feature_extraction.txt', 'w') as outfile:
+    # Stemmed words -
+    wordsText = stemWords(wordsText)
+    wordsTitle = stemWords(wordsTitle)
+    freq = {}
+    freq = histogram(wordsText, freq)
+    freq = histogram(wordsTitle, freq)
+    data[i]["words_freq_stem"] = freq
+
+    
+
+with open('stories3_feature_extraction.txt', 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
