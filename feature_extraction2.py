@@ -14,7 +14,8 @@ def histogram(words, freq):
     return freq
 
 
-def convertToLowerCase(text):
+def convertToLowerRemNonAlphaChars(text):
+    text = re.sub("[^a-zA-Z]"," ",text)
     text = text.lower()
     return text
 
@@ -76,7 +77,7 @@ print lemmatizeWord("going")
 print lemmatizeText("hey, he is going to school for attending classes")
 
 
-json_data=open('stories3_karma.txt')
+json_data=open('stories1_karma.txt')
 data = json.load(json_data)
 
 
@@ -97,7 +98,7 @@ for i in range(0,len(data)):
     
 
     # convert text to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
-    text = convertToLowerCase(text)
+    text = convertToLowerRemNonAlphaChars(text)
     # words = convertToLowerAndSplit(text) 
     # words = removeStopwords(words)
     words = lemmatizeText(text)
@@ -112,7 +113,7 @@ for i in range(0,len(data)):
         title = ""
     
     # convert title to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
-    title = convertToLowerCase(title)
+    title = convertToLowerRemNonAlphaChars(title)
     # words = convertToLowerAndSplit(title)
     # words = removeStopwords(words)
     words = lemmatizeText(title)
@@ -123,6 +124,6 @@ for i in range(0,len(data)):
     data[i]["words_freq"] = freq
 
 
-with open('stories3_feature_extraction.txt', 'w') as outfile:
+with open('stories1_feature_extraction.txt', 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
