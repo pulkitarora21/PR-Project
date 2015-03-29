@@ -14,6 +14,11 @@ def histogram(words, freq):
     return freq
 
 
+def convertToLowerCase(text):
+    text = text.lower()
+    return text
+
+
 def convertToLowerAndSplit(text):
     words = re.sub("[^a-zA-Z]"," ",text)
     lower_case = words.lower()        # Convert to lower case
@@ -53,10 +58,22 @@ def lemmatizeWords(words):
     return words
 
 
+def lemmatizeText(text):
+    wordsPos = pos_tag(word_tokenize(text))
+    words = []
+    for wordPos in wordsPos:
+        if get_wordnet_pos(wordPos[1])!='':
+            words.append(wnl.lemmatize(wordPos[0],get_wordnet_pos(wordPos[1])))
+        else:
+            words.append(wnl.lemmatize(wordPos[0]))
+    # words = [wnl.lemmatize(wordPos[0],get_wordnet_pos(wordPos[1])) if get_wordnet_pos(wordPos[1])!='' else wnl.lemmatize(wordPos[0]) for wordPos in wordsPos]
+    return words
+
+
 print lemmatizeWord("going")
 
 
-
+print lemmatizeText("hey, he is going to school for attending classes")
 
 
 json_data=open('stories3_karma.txt')
@@ -80,9 +97,11 @@ for i in range(0,len(data)):
     
 
     # convert text to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
-    words = convertToLowerAndSplit(text) 
+    text = convertToLowerCase(text)
+    # words = convertToLowerAndSplit(text) 
+    # words = removeStopwords(words)
+    words = lemmatizeText(text)
     words = removeStopwords(words)
-    words = lemmatizeWords(words)
     freq = {}
     freq = histogram(words, freq)
     
@@ -93,9 +112,11 @@ for i in range(0,len(data)):
         title = ""
     
     # convert title to lower case, split it into words, remove stopwords, and add the left out words to the histogram 
-    words = convertToLowerAndSplit(title)
+    title = convertToLowerCase(title)
+    # words = convertToLowerAndSplit(title)
+    # words = removeStopwords(words)
+    words = lemmatizeText(title)
     words = removeStopwords(words)
-    words = lemmatizeWords(words)
     freq = histogram(words, freq)
     
 
