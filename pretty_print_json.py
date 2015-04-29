@@ -1,6 +1,6 @@
 import json
-json_data=open('stories1.txt')
+json_data=open('stories3.txt')
 
 data = json.load(json_data)
-with open('stories1_pretty.txt', 'w') as outfile:
+with open('stories3_pretty.txt', 'w') as outfile:
 	json.dump(data, outfile, indent=4)

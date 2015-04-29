@@ -118453,18 +118453,5 @@
         "type": "story", 
         "id": 8721726, 
         "user_avg_karma": 0.5
-    }, 
-    {
-        "words_freq_stem": {}, 
-        "user_karma": 0, 
-        "deleted": true, 
-        "netloc": "", 
-        "datetime": 1418114599, 
-        "words_freq": {}, 
-        "time": 31399, 
-        "time_slot": 17, 
-        "type": "story", 
-        "id": 8721716, 
-        "user_avg_karma": 0
     }
 ]
